@@ -1,9 +1,10 @@
 import { Content } from "./Content";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter, Link, useSearchParams } from "react-router-dom";
+import { BrowserRouter, Link, useSearchParams } from "react-router-dom";
 import {
   createClient,
+  type ContentRef,
   type DataManifest,
   type DataResult,
 } from "@tau/blog";
@@ -18,50 +19,48 @@ if (!manifestPath || manifestPath.includes("__TAU_"))
 const client = createClient({
   manifestUrl: new URL(manifestPath, document.baseURI).href,
 });
+// 本模板只有一个页面，用 `?content=<key>` 选择正文；路由规则由模板决定，宿主不知道这个 URL。
+const routeFor = (key: string) => `/?content=${encodeURIComponent(key)}`;
+const hrefFor = (target: ContentRef) => routeFor(target.key);
 
-function App() {
+function App({ manifest }: { manifest: DataManifest }) {
   const [params] = useSearchParams();
-  const [manifest, setManifest] = useState<DataManifest>();
   const [result, setResult] = useState<DataResult>();
   const [error, setError] = useState("");
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState<{ key: string; title: string }[]>([]);
+  const [searchError, setSearchError] = useState("");
   const key = params.get("content");
   useEffect(() => {
     const controller = new AbortController();
     setError("");
     setResult(undefined);
-    client
-      .readManifest({ signal: controller.signal })
-      .then(async (manifest) => {
-        setManifest(manifest);
-        if (key) {
-          const result = await client.readData({
-            key,
-            signal: controller.signal,
-          });
-          if (!controller.signal.aborted) setResult(result);
-        }
-      })
-      .catch((error) => {
-        if (!controller.signal.aborted) setError(String(error));
-      });
+    if (key)
+      client
+        .readData({ key, signal: controller.signal })
+        .then(setResult)
+        .catch((error) => {
+          if (!controller.signal.aborted) setError(String(error));
+        });
     return () => controller.abort();
   }, [key]);
   useEffect(() => {
     const controller = new AbortController();
     client
       .search(query, { signal: controller.signal })
-      .then(setHits)
+      .then((hits) => {
+        setHits(hits);
+        setSearchError("");
+      })
       .catch((error) => {
-        if (!controller.signal.aborted) setError(String(error));
+        if (!controller.signal.aborted) setSearchError(String(error));
       });
     return () => controller.abort();
   }, [query]);
   return (
     <main>
       <header>
-        <Link to="/">{manifest?.site.title ?? "Tau 模板"}</Link>
+        <Link to="/">{manifest.site.title}</Link>
         <span>模板起步</span>
       </header>
       <input
@@ -70,11 +69,11 @@ function App() {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      {error && <p role="alert">{error}</p>}
+      {searchError && <p role="alert">{searchError}</p>}
       {query ? (
         <nav>
           {hits.map((hit) => (
-            <Link key={hit.key} to={`/?content=${encodeURIComponent(hit.key)}`}>
+            <Link key={hit.key} to={routeFor(hit.key)}>
               {hit.title}
             </Link>
           ))}
@@ -82,34 +81,34 @@ function App() {
       ) : null}
       {!key && (
         <nav>
-          {manifest?.items.map((item) => (
-            <Link
-              key={item.key}
-              to={`/?content=${encodeURIComponent(item.key)}`}
-            >
+          {manifest.items.map((item) => (
+            <Link key={item.key} to={routeFor(item.key)}>
               {item.title}
             </Link>
           ))}
         </nav>
       )}
+      {error && <p role="alert">{error}</p>}
       {key && !result && !error && <p role="status">正在读取内容…</p>}
       {result && (
         <article>
           <h1>
-            {
-              manifest?.items.find((item) => item.key === result.data.key)
-                ?.title
-            }
+            {manifest.items.find((item) => item.key === result.data.key)?.title}
           </h1>
-          <Content key={result.data.key} content={result} />
+          <Content key={result.data.key} content={result} hrefFor={hrefFor} />
         </article>
       )}
     </main>
   );
 }
 
-createRoot(document.getElementById("root")!).render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+const root = createRoot(document.getElementById("root")!);
+client.readManifest().then(
+  (manifest) =>
+    root.render(
+      <BrowserRouter basename={manifest.site.basePath.replace(/\/$/, "") || "/"}>
+        <App manifest={manifest} />
+      </BrowserRouter>,
+    ),
+  (error) => root.render(<p role="alert">{String(error)}</p>),
 );

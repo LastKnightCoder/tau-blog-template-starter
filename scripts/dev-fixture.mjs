@@ -13,6 +13,7 @@ const article = json("article", {
   version: 1,
   key: "article:1",
   meta: { type: "article", publishTime: 1 },
+  links: { "article:1": { key: "article:1", type: "article", id: 1 } },
   content: {
     id: 1,
     title: "从模板开始",
@@ -38,6 +39,21 @@ const article = json("article", {
             text: "正文、内容插件和样式由公开渲染器统一接入。",
             bold: true,
           },
+        ],
+      },
+      {
+        type: "paragraph",
+        children: [
+          { type: "formatted", text: "站内链接示例：" },
+          {
+            type: "content-link",
+            refId: 1,
+            contentId: 1,
+            contentType: "article",
+            contentTitle: "从模板开始",
+            children: [{ type: "formatted", text: "回到本文" }],
+          },
+          { type: "formatted", text: "。" },
         ],
       },
     ],
