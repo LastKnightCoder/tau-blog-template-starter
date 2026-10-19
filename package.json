@@ -1,0 +1,37 @@
+{
+  "name": "tau-blog-template-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "@tau/editor": "npm:@xiongtao.xt/tau-editor@0.1.0",
+    "@tau/plugins": "npm:@xiongtao.xt/tau-plugins@0.17.1",
+    "postcss": "8.5.6",
+    "lucide-react": "0.468.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-router-dom": "6.30.6",
+    "react-dnd": "16.0.1",
+    "react-dnd-html5-backend": "16.0.1",
+    "slate": "0.126.2",
+    "slate-dom": "0.126.0",
+    "slate-react": "0.126.4",
+    "slate-history": "0.113.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.27",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "typescript": "5.8.3",
+    "vite": "5.4.21",
+    "vitest": "3.2.7",
+    "jsdom": "25.0.1",
+    "adm-zip": "0.5.16"
+  }
+}

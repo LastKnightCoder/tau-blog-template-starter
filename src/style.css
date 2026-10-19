@@ -1,0 +1,10 @@
+body { margin: 0; color: var(--tau-ink-1); background: var(--tau-bg-page); font-family: system-ui, sans-serif; line-height: 1.7; }
+main { max-width: 800px; margin: 48px auto; padding: 0 24px; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 36px; }
+header a { font-size: 22px; font-weight: 650; text-decoration: none; }
+header span { color: var(--tau-ink-3); font-size: 13px; }
+a { color: var(--tau-accent); }
+nav { display: grid; gap: 12px; margin-top: 24px; }
+input { box-sizing: border-box; width: 100%; padding: 12px 16px; border: 1px solid var(--tau-line-1); border-radius: 10px; background: var(--tau-bg-surface); color: inherit; font: inherit; }
+article { margin-top: 40px; }
+[role="alert"] { color: var(--tau-danger); }
