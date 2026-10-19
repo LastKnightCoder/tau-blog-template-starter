@@ -10,9 +10,7 @@
     "build": "node scripts/build.mjs"
   },
   "dependencies": {
-    "@tau/editor": "npm:@xiongtao.xt/tau-editor@0.1.0",
-    "@tau/plugins": "npm:@xiongtao.xt/tau-plugins@0.19.0",
-    "postcss": "8.5.6",
+    "@tau/editor": "npm:@xiongtao.xt/tau-editor@0.2.0",
     "lucide-react": "0.468.0",
     "react": "19.2.0",
     "react-dom": "19.2.0",
