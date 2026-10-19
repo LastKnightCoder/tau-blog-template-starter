@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@tau/editor':
-        specifier: npm:@xiongtao.xt/tau-editor@0.2.0
-        version: '@xiongtao.xt/tau-editor@0.2.0(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@20.19.27)(@types/react@19.2.0)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate-history@0.113.1(slate@0.126.2))(slate-react@0.126.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate@0.126.2))(slate@0.126.2)'
+      '@tau/blog':
+        specifier: npm:@xiongtao.xt/tau-blog@0.1.0
+        version: '@xiongtao.xt/tau-blog@0.1.0(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@20.19.27)(@types/react@19.2.0)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate-history@0.113.1(slate@0.126.2))(slate-react@0.126.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate@0.126.2))(slate@0.126.2)'
       lucide-react:
         specifier: 0.468.0
         version: 0.468.0(react@19.2.0)
@@ -409,17 +409,11 @@ packages:
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
-  '@types/codemirror@5.60.18':
-    resolution: {integrity: sha512-aSBOPXH2PXRYixxUpVP1sJ5+S0vEfKDvR+lABZ7Kju/9Qb0SSbZk72NihWaKoQbANyibs92q4DBfYasywxnNkA==}
-
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
-
-  '@types/loadable__component@5.13.10':
-    resolution: {integrity: sha512-2/LjmgG1JcGPj7T3NViq7BB5cvOA0s63gL3Gv+FPULj2L+3ExWfsNQcsFPUIOoGsVUJeZxgNPf320JZDyxjtCQ==}
 
   '@types/node@20.19.27':
     resolution: {integrity: sha512-N2clP5pJhB2YnZJ3PIHFk5RkygRX5WO/5f0WC08tp0wd+sv0rsJk3MqWn3CbNmT2J505a5336jaQj4ph1AdMug==}
@@ -431,9 +425,6 @@ packages:
 
   '@types/react@19.2.0':
     resolution: {integrity: sha512-1LOH8xovvsKsCBq1wnT4ntDUdCJKmnEakhsuoUSy6ExlHCkGP2hqnatagYTgFk6oeL0VU31u7SNjunPN+GchtA==}
-
-  '@types/tern@0.23.9':
-    resolution: {integrity: sha512-ypzHFE/wBzh+BlH6rrBgS5I/Z7RD21pGhZ2rltb/+ZrVM1awdZwjx7hE5XfuYgHWk9uvV5HLZN3SloevCAp3Bw==}
 
   '@vitest/expect@3.2.7':
     resolution: {integrity: sha512-E8eBXaKibuvH2pSZErOjdVb5vF4PbKYcrnluBTYxEk1l/VhhwZg1kZQsdtjq+CsF5CFydf2Rdkz7jDHKSisi3w==}
@@ -464,8 +455,8 @@ packages:
   '@vitest/utils@3.2.7':
     resolution: {integrity: sha512-x6BDOd7dyo3PFLY3I9/HJ25X/6OurhGXk2/B9gOZNPF7XDVjeBK4k01lQE5uvDpbuheErh91qYuE1E2OEjK3Rw==}
 
-  '@xiongtao.xt/tau-editor@0.2.0':
-    resolution: {integrity: sha512-/mzOHZ1CxJG5ANUBRDs6pRWTaINn8tOIH6rZyr/CqQCIhUwBlVGHQDnDEATTPsFgN2/LdAERlRmeUUU9KjPcEA==}
+  '@xiongtao.xt/tau-blog@0.1.0':
+    resolution: {integrity: sha512-P+YNGd5SIxblD+mURQdI4P8NZYv2vbC0rLiZl6VPIeg+Jw0txzxcN9AhLZ0Kt1sTVSGr2bGwCgcius6Vcs4YBA==}
     peerDependencies:
       react: ^19.2.0
       react-dnd: ^16.0.1
@@ -510,9 +501,6 @@ packages:
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
-
-  codemirror@5.65.21:
-    resolution: {integrity: sha512-6teYk0bA0nR3QP0ihGMoxuKzpl5W80FpnHpBJpgy66NK3cZv5b/d/HY8PnRvfSsCG1MTfr92u2WUl+wT0E40mQ==}
 
   combined-stream@1.0.8:
     resolution: {integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==}
@@ -1215,17 +1203,9 @@ snapshots:
       '@types/deep-eql': 4.0.2
       assertion-error: 2.0.1
 
-  '@types/codemirror@5.60.18':
-    dependencies:
-      '@types/tern': 0.23.9
-
   '@types/deep-eql@4.0.2': {}
 
   '@types/estree@1.0.9': {}
-
-  '@types/loadable__component@5.13.10':
-    dependencies:
-      '@types/react': 19.2.0
 
   '@types/node@20.19.27':
     dependencies:
@@ -1238,10 +1218,6 @@ snapshots:
   '@types/react@19.2.0':
     dependencies:
       csstype: 3.2.3
-
-  '@types/tern@0.23.9':
-    dependencies:
-      '@types/estree': 1.0.9
 
   '@vitest/expect@3.2.7':
     dependencies:
@@ -1285,14 +1261,11 @@ snapshots:
       loupe: 3.2.1
       tinyrainbow: 2.0.0
 
-  '@xiongtao.xt/tau-editor@0.2.0(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@20.19.27)(@types/react@19.2.0)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate-history@0.113.1(slate@0.126.2))(slate-react@0.126.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate@0.126.2))(slate@0.126.2)':
+  '@xiongtao.xt/tau-blog@0.1.0(react-dnd-html5-backend@16.0.1)(react-dnd@16.0.1(@types/node@20.19.27)(@types/react@19.2.0)(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate-history@0.113.1(slate@0.126.2))(slate-react@0.126.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(slate-dom@0.126.0(slate@0.126.2))(slate@0.126.2))(slate@0.126.2)':
     dependencies:
-      '@types/codemirror': 5.60.18
-      '@types/loadable__component': 5.13.10
       '@types/react': 19.2.0
       '@types/react-dom': 19.2.0(@types/react@19.2.0)
       clsx: 2.1.1
-      codemirror: 5.65.21
       lucide-react: 0.468.0(react@19.2.0)
       react: 19.2.0
       react-dnd: 16.0.1(@types/node@20.19.27)(@types/react@19.2.0)(react@19.2.0)
@@ -1329,8 +1302,6 @@ snapshots:
   check-error@2.1.3: {}
 
   clsx@2.1.1: {}
-
-  codemirror@5.65.21: {}
 
   combined-stream@1.0.8:
     dependencies:

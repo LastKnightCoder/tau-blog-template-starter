@@ -2,8 +2,8 @@ import { act, createRef } from "react";
 import { createRoot } from "react-dom/client";
 import { Node, Transforms } from "slate";
 import { expect, it, vi } from "vitest";
-import { Editor, type EditorRef } from "@tau/editor";
-import { ContentRenderer, type DataResult } from "@tau/editor/renderer";
+import { Editor, type EditorRef } from "@tau/blog/editor";
+import { ContentRenderer, type DataResult } from "@tau/blog";
 
 it("公开 Editor 无需宿主接线即可编辑，多实例不共享正文或回调", async () => {
   (

@@ -1,13 +1,13 @@
+import { Content } from "./Content";
 import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Link, useSearchParams } from "react-router-dom";
 import {
   createClient,
-  ContentRenderer,
   type DataManifest,
   type DataResult,
-} from "@tau/editor/renderer";
-import "@tau/editor/styles.css";
+} from "@tau/blog";
+import "@tau/blog/styles.css";
 import "./style.css";
 
 const manifestPath = document.querySelector<HTMLMetaElement>(
@@ -101,7 +101,7 @@ function App() {
                 ?.title
             }
           </h1>
-          <ContentRenderer key={result.data.key} content={result} />
+          <Content key={result.data.key} content={result} />
         </article>
       )}
     </main>
