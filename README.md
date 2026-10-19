@@ -2,7 +2,7 @@
 
 这是模板作者的独立工程，使用公开数据 SDK 和通用 Editor。宿主只输出数据、搜索和插件产物；页面、Router、正文、搜索界面及预览由模板决定。
 
-当前为候选交付：已在无宿主源码的临时作者目录验证归档安装与冻结复装，公共 SDK 发布需先协调 npm 0.18.0 与 master 0.17.0 的差异。下列公开安装命令在正式版本及锁文件就绪后使用；候选验证入口为宿主仓库的 `scripts/editor/verify-author.mjs <本工程> --candidate`，生成的作者目录只依赖其中的 npm 归档和可公开安装的依赖。
+本工程通过 npm 别名使用公开的 `@xiongtao.xt/tau-editor@0.1.0` 和 `@xiongtao.xt/tau-plugins@0.19.0`，代码中仍使用 `@tau/editor`、`@tau/plugins`。按仓库锁文件安装即可，不需要宿主 checkout、本机源码链接或候选归档。
 
 ```sh
 pnpm install --frozen-lockfile
