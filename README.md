@@ -46,3 +46,9 @@ HTML 等内容直接使用对应插件的原有渲染组件，模板不识别具
 ## 打包
 
 先把 `template.json` 的 `id`、`name` 改成自己的（`example.template` 只是占位，不同模板 id 相同会互相覆盖），再执行 `pnpm build`，产物为 `output/<id>-<version>.zip`。ZIP 只含静态产物和完整摘要，不执行桌面插件生命周期；通过插件中心提交后，用户安装即可在发布设置中选择。
+
+## 样式配置
+
+本模板是最小化示例，不包含 Tailwind CSS。如果你需要使用 Tailwind 自定义样式，请查看 **[样式配置指南](STYLING_GUIDE.md)**，了解如何正确配置以避免常见的样式问题。
+
+⚠️ **重要**：如果你从官方模板 [tau-blog-template](https://github.com/LastKnightCoder/tau-blog-template) 复制代码并使用 Tailwind，务必参考样式指南正确配置，否则可能出现响应式布局失效、样式丢失等问题。
