@@ -43,6 +43,20 @@ void main();
 
 HTML 等内容直接使用对应插件的原有渲染组件，模板不识别具体插件节点，也不改写其 render。
 
+## 站点字段
+
+宿主只提供站点标题、图标、`basePath` 与 `publicUrl`，其余站点配置由模板自己声明。在 `template.json` 的 `siteFields` 中列出字段，用户就能在 Tau「站点设置 · 博客模板」里填写，发布后从 `manifest.site.fields[key]` 读取：
+
+```json
+"siteFields": [
+  { "key": "tagline", "label": "副标题", "type": "text", "placeholder": "一句话介绍你的站点" },
+  { "key": "layout", "label": "首页布局", "type": "select", "options": [{ "value": "list", "label": "列表" }, { "value": "grid", "label": "网格" }], "default": "list" },
+  { "key": "showSearch", "label": "显示搜索", "type": "switch", "default": true }
+]
+```
+
+支持 `text`、`textarea`、`url`、`select`、`switch` 五种类型，可选 `description`（说明）、`placeholder`（文本类）和 `default`。`key` 以字母开头，只含字母、数字和下划线，最多 32 个字段。用户没填写的字段取 `default`；文本类没有默认值时为空字符串，开关为 `false`，下拉为第一个选项。
+
 ## 打包
 
 先把 `template.json` 的 `id`、`name` 改成自己的（`example.template` 只是占位，不同模板 id 相同会互相覆盖），再执行 `pnpm build`，产物为 `output/<id>-<version>.zip`。ZIP 只含静态产物和完整摘要，不执行桌面插件生命周期；通过插件中心提交后，用户安装即可在发布设置中选择。

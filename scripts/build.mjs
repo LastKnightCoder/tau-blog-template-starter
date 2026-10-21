@@ -6,7 +6,7 @@ import { build } from "vite";
 import AdmZip from "adm-zip";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const identity = JSON.parse(await readFile(path.join(root, "template.json"), "utf8"));
+const { siteFields, ...identity } = JSON.parse(await readFile(path.join(root, "template.json"), "utf8"));
 await build({ root });
 const integrity = {};
 async function walk(directory, prefix = "") {
@@ -17,7 +17,7 @@ async function walk(directory, prefix = "") {
   }
 }
 await walk(path.join(root, "dist/site"));
-const manifest = { formatVersion: 1, apiVersion: 1, platform: "desktop", ...identity, template: { protocolVersion: 1, root: "site", entries: ["index.html"] }, integrity };
+const manifest = { formatVersion: 1, apiVersion: 1, platform: "desktop", ...identity, template: { protocolVersion: 1, root: "site", entries: ["index.html"], ...(siteFields ? { siteFields } : {}) }, integrity };
 await writeFile(path.join(root, "dist/manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 await writeFile(path.join(root, "dist/README.md"), await readFile(path.join(root, "README.md")));
 const zip = new AdmZip();

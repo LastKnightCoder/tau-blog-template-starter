@@ -77,8 +77,8 @@ const manifest = json("site", {
   version: 1,
   site: {
     title: "我的 Tau 模板",
-    description: "仅开发模式使用的示例数据",
     basePath: "/",
+    fields: { tagline: "仅开发模式使用的示例数据" },
   },
   search: { data: search.file, integrity: search.integrity },
   items: [

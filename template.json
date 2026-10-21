@@ -3,5 +3,8 @@
   "name": "我的 Tau 模板",
   "version": "1.0.1",
   "description": "独立模板起步示例",
-  "minAppVersion": "0.59.0"
+  "minAppVersion": "0.59.0",
+  "siteFields": [
+    { "key": "tagline", "label": "副标题", "type": "text", "placeholder": "一句话介绍你的站点" }
+  ]
 }
