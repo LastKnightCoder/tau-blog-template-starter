@@ -1,7 +1,7 @@
 {
   "id": "example.template",
   "name": "我的 Tau 模板",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "独立模板起步示例",
   "minAppVersion": "0.59.0",
   "siteFields": [
