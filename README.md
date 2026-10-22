@@ -2,7 +2,7 @@
 
 这是模板作者的独立工程，直接使用 `@tau/blog`。宿主只输出数据、搜索和插件产物；页面、Router、搜索界面及预览由模板决定。
 
-公开依赖固定为 `@xiongtao.xt/tau-blog@0.5.0`，代码中使用别名 `@tau/blog`。点击 [Use this template](https://github.com/LastKnightCoder/tau-blog-template-starter/generate) 创建自己的仓库后，按锁文件安装即可，无需宿主 checkout 或本机源码链接。
+公开依赖固定为 `@xiongtao.xt/tau-blog@0.6.0`，代码中使用别名 `@tau/blog`。点击 [Use this template](https://github.com/LastKnightCoder/tau-blog-template-starter/generate) 创建自己的仓库后，按锁文件安装即可，无需宿主 checkout 或本机源码链接。
 
 ```sh
 pnpm install --frozen-lockfile
