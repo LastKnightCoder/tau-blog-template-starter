@@ -6,18 +6,43 @@ import { build } from "vite";
 import AdmZip from "adm-zip";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const { siteFields, ...identity } = JSON.parse(await readFile(path.join(root, "template.json"), "utf8"));
+const { siteFields, i18n, ...identity } = JSON.parse(
+  await readFile(path.join(root, "template.json"), "utf8")
+);
 await build({ root });
+for (const relative of new Set(Object.values(i18n?.resources ?? {}))) {
+  const target = path.join(root, "dist/site", relative);
+  await mkdir(path.dirname(target), { recursive: true });
+  await writeFile(target, await readFile(path.join(root, relative)));
+}
 const integrity = {};
 async function walk(directory, prefix = "") {
-  for (const entry of (await readdir(directory, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
+  for (const entry of (await readdir(directory, { withFileTypes: true })).sort((a, b) =>
+    a.name.localeCompare(b.name)
+  )) {
     const relative = prefix + entry.name;
     if (entry.isDirectory()) await walk(path.join(directory, entry.name), relative + "/");
-    else integrity["site/" + relative] = createHash("sha256").update(await readFile(path.join(directory, entry.name))).digest("hex");
+    else
+      integrity["site/" + relative] = createHash("sha256")
+        .update(await readFile(path.join(directory, entry.name)))
+        .digest("hex");
   }
 }
 await walk(path.join(root, "dist/site"));
-const manifest = { formatVersion: 1, apiVersion: 1, platform: "desktop", ...identity, template: { protocolVersion: 1, root: "site", entries: ["index.html"], ...(siteFields ? { siteFields } : {}) }, integrity };
+const manifest = {
+  formatVersion: 1,
+  apiVersion: 1,
+  platform: "desktop",
+  ...identity,
+  template: {
+    protocolVersion: 1,
+    root: "site",
+    entries: ["index.html"],
+    ...(siteFields ? { siteFields } : {}),
+    ...(i18n ? { i18n } : {}),
+  },
+  integrity,
+};
 await writeFile(path.join(root, "dist/manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 await writeFile(path.join(root, "dist/README.md"), await readFile(path.join(root, "README.md")));
 const zip = new AdmZip();
@@ -25,4 +50,6 @@ zip.addLocalFolder(path.join(root, "dist"), identity.id);
 await mkdir(path.join(root, "output"), { recursive: true });
 const bytes = zip.toBuffer();
 await writeFile(path.join(root, "output", `${identity.id}-${identity.version}.zip`), bytes);
-console.log(JSON.stringify({ id: identity.id, files: Object.keys(integrity).length, zipBytes: bytes.length }));
+console.log(
+  JSON.stringify({ id: identity.id, files: Object.keys(integrity).length, zipBytes: bytes.length })
+);

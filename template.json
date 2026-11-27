@@ -3,8 +3,27 @@
   "name": "我的 Tau 模板",
   "version": "1.2.0",
   "description": "独立模板起步示例",
-  "minAppVersion": "0.59.0",
+  "minAppVersion": "0.68.0",
   "siteFields": [
-    { "key": "tagline", "label": "副标题", "type": "text", "placeholder": "一句话介绍你的站点" }
-  ]
+    {
+      "key": "tagline",
+      "label": {
+        "kind": "i18n",
+        "key": "field.tagline"
+      },
+      "type": "text",
+      "placeholder": {
+        "kind": "i18n",
+        "key": "field.tagline.placeholder"
+      }
+    }
+  ],
+  "i18n": {
+    "fallbackLocale": "zh-CN",
+    "resources": {
+      "zh-CN": "locales/zh-CN.json",
+      "zh-TW": "locales/zh-TW.json",
+      "en-US": "locales/en-US.json"
+    }
+  }
 }

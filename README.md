@@ -66,3 +66,11 @@ HTML 等内容直接使用对应插件的原有渲染组件，模板不识别具
 本模板是最小化示例，不包含 Tailwind CSS。如果你需要使用 Tailwind 自定义样式，请查看 **[样式配置指南](STYLING_GUIDE.md)**，了解如何正确配置以避免常见的样式问题。
 
 ⚠️ **重要**：如果你从官方模板 [tau-blog-template](https://github.com/LastKnightCoder/tau-blog-template) 复制代码并使用 Tailwind，务必参考样式指南正确配置，否则可能出现响应式布局失效、样式丢失等问题。
+
+## 配置界面的语言
+
+`template.json` 的 `i18n` 声明词典文件，`resources` 路径相对打包后的 `template.root`；本示例由构建脚本把 `locales/` 的 JSON 复制到 `dist/site/locales/`。字段的 `label`、`description`、`placeholder` 和选项 `label` 可使用 `{ "kind": "i18n", "key": "词条键" }`。
+
+这些词典只供 Tau 的模板设置界面使用，会校验完整性并计入包预算，但不随站点导出。网站自身需要的 JSON 应作为未声明为界面词典的普通资产。字段的 key、选项 value、默认值和用户填写的内容保持原样。
+
+本示例的新词典声明要求桌面客户端至少 `0.68.0`；旧的纯字符串模板仍按原协议工作。UI 库和博客渲染库使用各自的版本，不由这个客户端门槛决定。
