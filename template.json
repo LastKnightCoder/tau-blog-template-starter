@@ -4,6 +4,20 @@
   "version": "1.2.0",
   "description": "独立模板起步示例",
   "minAppVersion": "0.68.0",
+  "locales": [
+    "zh-CN",
+    "zh-TW",
+    "en-US"
+  ],
+  "catalogI18n": {
+    "zh-TW": {
+      "description": "獨立模板起步範例"
+    },
+    "en-US": {
+      "name": "My Tau Template",
+      "description": "Starter example for standalone Tau blog templates"
+    }
+  },
   "siteFields": [
     {
       "key": "tagline",
